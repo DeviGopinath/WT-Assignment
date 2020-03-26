@@ -12,4 +12,4 @@ After establishing the websocket
 
 Open the Form and Table HTML files in different tabs.
 
-You can see that after entering the data and clicking the 'Add' button the data has been tranferred the the Table in `Table.html`
+You can see that after entering the data in `Form.html` and clicking the 'Add' button the data has been tranferred the the Table in `Table.html`
