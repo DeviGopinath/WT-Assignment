@@ -1,18 +1,26 @@
 var server = require('ws').Server;
-var serv = new server({port : 9000});
+var s = new server({port : 9000});
 var name;
 
-serv.on('connection',function(ws){
+s.on('connection',function(ws){
     
     ws.on('message',function(message){
        message = JSON.parse(message);
        
        
-           console.log("Message received at Server:");
-           console.log(message.name);
-           console.log(message.address);
-           console.log("Sending Received Data to Database.html .....");
-        serv.clients.forEach(function e(client) {    client.send(JSON.stringify({  name: message.name,  address: message.address  }));     });
+           console.log("Message received:");
+           console.log(message.type);
+           console.log(message.data);
+
+        s.clients.forEach(function e(client) {
+        
+            client.send(JSON.stringify({
+               
+                name: message.type,
+                data: message.data 
+            })); 
+        
+        });
 
     });
     console.log("A Client has connected");
@@ -20,4 +28,3 @@ serv.on('connection',function(ws){
         console.log("A Client has ended connection")
     });
 });
-
