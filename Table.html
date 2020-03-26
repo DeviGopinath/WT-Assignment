@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>
+        Table
+    </title>
+<script>
+ 
+var sock = new WebSocket("ws://localhost:9000");
+ 
+ 
+sock.onopen = function(){    
+    alert("Connected")               
+ 
+}
+ 
+ 
+ 
+     sock.onmessage = function(event){             
+            
+            console.log(event);                      
+            var json = JSON.parse(event.data);       
+            console.log(json.data);
+            add_raw();
+ 
+            function add_raw(){
+                var table = document.getElementById("myTable");
+ 
+                var row = table.insertRow(-1);
+ 
+ 
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+ 
+                cell1.innerHTML = json.name;
+                cell2.innerHTML = json.data;
+ 
+            }
+ 
+ 
+ 
+     }
+ 
+ 
+ 
+ 
+</script>
+</head>
+<body>
+    <br><br><br><br>
+    <center>
+    <table border="1" id="myTable">
+        <tr>
+            <th>Name</th><th>Address</th>
+        </tr>
+    <center>
+    </table>
+</body>
+</html>
